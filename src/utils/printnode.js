@@ -1,6 +1,6 @@
 const API_KEY = 'cjY7_cVqh1tDtEjUpo6eJIVFf_3ojUnBuQse6-WMFs4'; // Asegúrate de proteger esto en producción
 
-// Exporta la función para obtener las impresoras
+// Función para obtener las impresoras
 export async function getPrinters() {
   try {
     const response = await fetch('https://api.printnode.com/printers', {
@@ -21,8 +21,8 @@ export async function getPrinters() {
   }
 }
 
-// Exporta la función para imprimir documentos
-export const printDocument = async (printerId, fileUrl) => {
+// Función para imprimir documentos con opción de copias
+export const printDocument = async (printerId, fileUrl, copies = 1) => {
   try {
     const fileBlob = await fetch(fileUrl).then(res => res.blob());
     const fileBuffer = await fileBlob.arrayBuffer();
@@ -42,7 +42,10 @@ export const printDocument = async (printerId, fileUrl) => {
         title: 'Documento desde React',
         contentType: 'pdf_base64',
         content: fileBase64,
-        source: 'React App'
+        source: 'React App',
+        options: {
+          copies: copies
+        }
       })
     });
 
