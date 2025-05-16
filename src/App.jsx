@@ -3,6 +3,7 @@ import PrinterList from './components/PrinterList';
 import DocumentUploader from './components/DocumentUploader';
 import PrintControls from './components/PrintControls';
 import { ConverterRawPdf } from './components/ConverterRawPdf';
+import InvoiceForm from './components/InvoiceForm';
 
 const App = () => {
   const [selectedPrinter, setSelectedPrinter] = useState(null);
@@ -13,7 +14,7 @@ const App = () => {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            PrintNode Master
+            printing system
           </h1>
           <p className="mt-3 text-xl text-gray-500">
             Controla tus impresoras remotas con facilidad
@@ -27,6 +28,7 @@ const App = () => {
           {selectedPrinter && document && (
             <PrintControls selectedPrinter={selectedPrinter} document={document} />
           )}
+          <InvoiceForm/>
         </div>
       </div>
     </div>
